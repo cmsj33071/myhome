@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>林川 · 全栈工程师 &amp; 创意开发者</title>
+<meta name="description" content="林川的个人作品集 —— 全栈工程师与创意开发者，专注于把复杂业务抽象成清晰的产品，并用细节打磨界面体验。">
+<meta name="author" content="林川">
+<meta name="theme-color" content="#05070d">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="林川 · 全栈工程师 &amp; 创意开发者">
+<meta property="og:description" content="用代码构建有质感的产品。作品集、技能与经历。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23070a12'/%3E%3Cpath d='M9 9h4v14H9zm0 0h6.4c3.6 0 5.9 2.6 5.9 7s-2.3 7-5.9 7H9' fill='none' stroke='%2360a5fa' stroke-width='2'/%3E%3Ccircle cx='24' cy='22.5' r='2.3' fill='%235eead4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="no-js">
+
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<!-- 背景层：网格 / 光晕 / 粒子 / 噪点 -->
+<div class="ambient" aria-hidden="true">
+  <div class="ambient__grid"></div>
+  <div class="ambient__orb ambient__orb--a" data-parallax="0.12"></div>
+  <div class="ambient__orb ambient__orb--b" data-parallax="-0.08"></div>
+  <div class="ambient__orb ambient__orb--c" data-parallax="0.18"></div>
+  <div class="ambient__vignette"></div>
+</div>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-glow" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+<!-- 顶部导航 -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a class="brand" href="#home" aria-label="返回首页">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 28 28" fill="none">
+          <path d="M7 21V7h4.6c4 0 6.4 2.7 6.4 7s-2.4 7-6.4 7H7Z" stroke="url(#bg1)" stroke-width="1.8" stroke-linejoin="round"/>
+          <circle cx="21.5" cy="19.5" r="2" fill="url(#bg2)"/>
+          <defs>
+            <linearGradient id="bg1" x1="7" y1="7" x2="18" y2="21" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#5eead4"/><stop offset="1" stop-color="#a78bfa"/>
+            </linearGradient>
+            <linearGradient id="bg2" x1="19" y1="17" x2="24" y2="22" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#f472b6"/><stop offset="1" stop-color="#60a5fa"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
+      <span class="brand__text"><span data-bind="name">林川</span><span class="brand__dot">.</span></span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="主导航">
+      <a class="nav__link" href="#about">关于</a>
+      <a class="nav__link" href="#skills">技能</a>
+      <a class="nav__link" href="#work">作品</a>
+      <a class="nav__link" href="#journey">经历</a>
+      <a class="nav__link" href="#contact">联系</a>
+    </nav>
+
+    <a class="btn btn--ghost header__cta" href="#contact">
+      <span class="status-dot" aria-hidden="true"></span>合作咨询
+    </a>
+
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单">
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <nav aria-label="移动端导航">
+      <a class="mobile-menu__link" href="#about"><span>01</span>关于<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+      <a class="mobile-menu__link" href="#skills"><span>02</span>技能<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+      <a class="mobile-menu__link" href="#work"><span>03</span>作品<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+      <a class="mobile-menu__link" href="#journey"><span>04</span>经历<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+      <a class="mobile-menu__link" href="#contact"><span>05</span>联系<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></a>
+    </nav>
+    <p class="mobile-menu__foot"><span class="status-dot"></span><span data-bind="status">开放远程与长期合作</span></p>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 首屏 -->
+  <section class="hero" id="home">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <div class="status-pill reveal">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-bind="status">开放远程与长期合作</span>
+          <span class="status-pill__sep" aria-hidden="true"></span>
+          <span class="status-pill__mono" id="pill-year">2026</span>
+        </div>
+
+        <p class="hero__intro reveal" style="--d:60ms">
+          你好，我是 <strong data-bind="name">林川</strong>
+          <span class="hero__alias">/ <span data-bind="latin">LIN CHUAN</span></span>
+        </p>
+
+        <h1 class="hero__title">
+          <span class="line"><span class="line__in" data-bind="heroTitle">用代码构建</span></span>
+          <span class="line"><span class="line__in grad" data-bind="heroTitleAccent">有质感的产品</span></span>
+        </h1>
+
+        <p class="hero__desc reveal" style="--d:180ms" data-bind="heroDesc">
+          六年全栈经验，擅长把复杂业务拆成清晰的系统，再用细节把界面打磨到像素级。在性能、动效与可维护性之间，找到那个刚好的平衡点。
+        </p>
+
+        <div class="hero__actions reveal" style="--d:240ms">
+          <a class="btn btn--primary" href="#work">
+            <span>查看作品</span>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.5 12.5 12.5 3.5M5.5 3.5h7v7"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#contact">聊聊想法</a>
+        </div>
+
+        <div class="hero__meta reveal" style="--d:300ms">
+          <div class="meta-item">
+            <span class="meta-label">Location</span>
+            <span data-bind="location">杭州 · 中国</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Focus</span>
+            <span data-bind="focus">Web / 设计系统 / 动效</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Status</span>
+            <span class="meta-live"><i></i>可接新项目</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__visual reveal" style="--d:220ms">
+        <div class="stage" data-tilt>
+          <div class="stage__glow" aria-hidden="true"></div>
+          <div class="ring ring--1" aria-hidden="true"><i></i></div>
+          <div class="ring ring--2" aria-hidden="true"><i></i></div>
+          <div class="ring ring--3" aria-hidden="true"><i></i></div>
+          <div class="stage__orb" aria-hidden="true"><span></span></div>
+
+          <div class="terminal" aria-hidden="true">
+            <div class="terminal__bar">
+              <span class="terminal__dots"><i></i><i></i><i></i></span>
+              <span class="terminal__name">developer.ts</span>
+              <span class="terminal__live">● live</span>
+            </div>
+<pre class="terminal__code"><code><span class="tok-k">const</span> dev = {
+  <span class="tok-p">name</span>: <span class="tok-s">'林川'</span>,
+  <span class="tok-p">role</span>: <span class="tok-s">'Full-Stack'</span>,
+  <span class="tok-p">stack</span>: [<span class="tok-s">'TS'</span>, <span class="tok-s">'React'</span>, <span class="tok-s">'Node'</span>],
+  <span class="tok-p">craft</span>: <span class="tok-s">'细节控'</span>,
+  <span class="tok-p">openToWork</span>: <span class="tok-b">true</span>,
+};</code></pre>
+          </div>
+
+          <span class="chip chip--1">TypeScript</span>
+          <span class="chip chip--2">Lighthouse 99</span>
+          <span class="chip chip--3">Design × Code</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <span>Scroll</span><i></i>
+    </div>
+  </section>
+
+  <!-- 关键词滚动带 -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track" id="marquee-track"></div>
+  </div>
+
+  <!-- 关于 -->
+  <section class="section section--about" id="about">
+    <div class="container">
+      <div class="section__head">
+        <div class="section__head-main">
+          <p class="eyebrow reveal"><span class="eyebrow__num">01</span>About</p>
+          <h2 class="section__title reveal" style="--d:60ms">写代码的人，<br>也在意像素与节奏。</h2>
+        </div>
+        <div class="section__head-side">
+          <p class="section__lead reveal" style="--d:120ms">
+            我相信好的产品是工程与设计的交集：逻辑要足够严谨，体验要足够自然。
+          </p>
+          <p class="section__note reveal" style="--d:180ms">
+            <span class="mono-tag">BASED IN HANGZHOU</span>
+            <span class="mono-tag">SINCE 2020</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="about">
+        <aside class="profile-card reveal" aria-label="个人名片">
+          <div class="profile-card__frame">
+            <div class="profile-card__grid" aria-hidden="true"></div>
+            <div class="profile-card__top">
+              <span>PROFILE</span>
+              <span>01 / 05</span>
+            </div>
+            <div class="profile-card__monogram" data-bind="initials">LC</div>
+            <div class="profile-card__scan" aria-hidden="true"></div>
+            <span class="corner corner--tl" aria-hidden="true"></span>
+            <span class="corner corner--tr" aria-hidden="true"></span>
+            <span class="corner corner--bl" aria-hidden="true"></span>
+            <span class="corner corner--br" aria-hidden="true"></span>
+            <div class="profile-card__caption">
+              <span class="profile-card__name" data-bind="name">林川</span>
+              <span class="profile-card__role" data-bind="role">全栈工程师 / 创意开发者</span>
+            </div>
+          </div>
+          <div class="profile-card__meta">
+            <div class="profile-card__loc">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M8 14s4.5-4 4.5-7.2A4.5 4.5 0 0 0 3.5 6.8C3.5 10 8 14 8 14Z"/><circle cx="8" cy="6.8" r="1.6"/></svg>
+              <span data-bind="location">杭州 · 中国</span>
+            </div>
+            <span class="profile-card__badge"><i></i><span data-bind="availableBadge">可合作</span></span>
+          </div>
+        </aside>
+
+        <div class="about__body">
+          <div class="about__text" id="about-text"></div>
+          <ul class="about__list" id="about-highlights"></ul>
+          <div class="stats reveal" id="stats"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 技能 -->
+  <section class="section section--skills" id="skills">
+    <div class="container">
+      <div class="section__head">
+        <div class="section__head-main">
+          <p class="eyebrow reveal"><span class="eyebrow__num">02</span>Capabilities</p>
+          <h2 class="section__title reveal" style="--d:60ms">把技术栈，<br>变成可交付的能力。</h2>
+        </div>
+        <div class="section__head-side">
+          <p class="section__lead reveal" style="--d:120ms">
+            不追求罗列名词，更在意每一项技术能否落到可交付的结果。下面是日常使用最顺手的工具箱。
+          </p>
+        </div>
+      </div>
+
+      <div class="skills" id="skills-grid"></div>
+    </div>
+  </section>
+
+  <!-- 作品 -->
+  <section class="section section--work" id="work">
+    <div class="container">
+      <div class="section__head">
+        <div class="section__head-main">
+          <p class="eyebrow reveal"><span class="eyebrow__num">03</span>Selected Work</p>
+          <h2 class="section__title reveal" style="--d:60ms">做过的一些<br>产品与实验。</h2>
+        </div>
+        <div class="section__head-side">
+          <p class="section__lead reveal" style="--d:120ms">
+            每个项目都尽量在一个明确的约束下完成：可维护、可度量、可交付。点开卡片可以看到更多细节。
+          </p>
+        </div>
+      </div>
+
+      <div class="filters reveal" id="filters" role="group" aria-label="项目筛选"></div>
+      <div class="projects" id="projects"></div>
+    </div>
+  </section>
+
+  <!-- 经历 -->
+  <section class="section section--journey" id="journey">
+    <div class="container">
+      <div class="section__head">
+        <div class="section__head-main">
+          <p class="eyebrow reveal"><span class="eyebrow__num">04</span>Journey</p>
+          <h2 class="section__title reveal" style="--d:60ms">一路做过来，<br>还在做同一件事。</h2>
+        </div>
+        <div class="section__head-side">
+          <p class="section__lead reveal" style="--d:120ms">
+            从设计稿到上线，从页面到系统。岗位在变，对细节的偏执没变。
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-wrap reveal">
+        <span class="timeline__axis" aria-hidden="true"></span>
+        <span class="timeline__fill" id="timeline-fill" aria-hidden="true"></span>
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系 -->
+  <section class="section section--contact" id="contact">
+    <div class="container">
+      <div class="contact__panel reveal">
+        <div class="contact__glow" aria-hidden="true"></div>
+        <div class="contact__grid" aria-hidden="true"></div>
+        <p class="eyebrow eyebrow--center"><span class="eyebrow__num">05</span>Contact</p>
+        <h2 class="contact__title"><span data-bind="contactTitle">有想法？</span><span class="grad" data-bind="contactTitleAccent">我们聊聊。</span></h2>
+        <p class="contact__desc" data-bind="contactDesc">
+          无论是产品从 0 到 1、设计系统落地，还是单纯想交流技术与设计，都欢迎写信给我。通常会在 24 小时内回复。
+        </p>
+
+        <div class="contact__actions">
+          <button class="btn btn--primary btn--lg" id="copy-email" type="button" aria-label="复制邮箱地址">
+            <span class="btn__email" data-bind="email">hi@linchuan.dev</span>
+            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="6" y="6" width="8.5" height="8.5" rx="1.6"/><path d="M11.5 6V4.4c0-.8-.6-1.4-1.4-1.4H4.4C3.6 3 3 3.6 3 4.4v5.7c0 .8.6 1.4 1.4 1.4H6"/></svg>
+          </button>
+          <a class="btn btn--ghost btn--lg" href="mailto:hi@linchuan.dev" id="mail-link">
+            发送邮件
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.5 12.5 12.5 3.5M5.5 3.5h7v7"/></svg>
+          </a>
+        </div>
+
+        <div class="socials" id="socials"></div>
+
+        <p class="contact__note"><span class="status-dot" aria-hidden="true"></span><span data-bind="contactNote">目前接受远程合作与长期顾问项目</span></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <p class="footer__copy">© <span id="year">2026</span> <span data-bind="name">林川</span> · 用 HTML / CSS / JavaScript 手工构建</p>
+    <p class="footer__meta"><span class="mono-tag">NO FRAMEWORK</span><span class="mono-tag">NO BACKEND</span></p>
+    <a class="footer__top" href="#home">回到顶部 <span aria-hidden="true">↑</span></a>
+  </div>
+</footer>
+
+<!-- 项目详情弹窗 -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__panel" role="document">
+    <button class="modal__close" type="button" data-close aria-label="关闭弹窗">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg>
+    </button>
+    <div class="modal__cover" id="modal-cover">
+      <span class="modal__cover-index" id="modal-index">01</span>
+      <span class="modal__cover-tag" id="modal-category">产品</span>
+    </div>
+    <div class="modal__body">
+      <p class="modal__meta" id="modal-meta"></p>
+      <h3 class="modal__title" id="modal-title"></h3>
+      <p class="modal__desc" id="modal-desc"></p>
+      <p class="modal__label">关键结果</p>
+      <ul class="modal__points" id="modal-points"></ul>
+      <div class="modal__tags" id="modal-tags"></div>
+      <div class="modal__actions">
+        <a class="btn btn--primary" href="#contact" data-close>聊聊类似的项目</a>
+        <span class="modal__hint">或直接写信：<span data-bind="email">hi@linchuan.dev</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<noscript>
+  <p style="position:fixed;inset:auto 16px 16px;z-index:200;padding:14px 18px;border-radius:12px;background:#0f1520;color:#e8edf7;font-size:14px">
+    这个作品集的内容由本地静态数据渲染，请启用 JavaScript 后查看。
+  </p>
+</noscript>
+
+<script src="js/data.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
