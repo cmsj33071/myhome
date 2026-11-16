@@ -127,6 +127,7 @@
           '</div>'
         );
       }).join('');
+      stats.style.setProperty('--stat-cols', data.stats.length);
     }
   }
 
@@ -144,7 +145,7 @@
           '<div class="bar">' +
             '<div class="bar__top">' +
               '<span class="bar__label">' + esc(bar.name) + '</span>' +
-              '<span class="bar__val">' + bar.level + '</span>' +
+              '<span class="bar__val">' + esc(bar.note || bar.level) + '</span>' +
             '</div>' +
             '<span class="bar__track"><i class="bar__fill" style="--w:' + bar.level + '%"></i></span>' +
           '</div>'
@@ -202,7 +203,7 @@
     grid.innerHTML = data.projects.map(function (project, i) {
       var tags = project.tags.map(function (tag) { return '<li>' + esc(tag) + '</li>'; }).join('');
       var pos = GLYPH_POS[i % GLYPH_POS.length];
-      var badgeText = project.featured ? 'Featured' : (project.link ? 'Open Source' : '');
+      var badgeText = project.link ? 'Open Source' : (project.featured ? 'Featured' : '');
       return (
         '<article class="project reveal' + (project.featured ? ' project--lg' : '') + '"' +
           ' data-cat="' + esc(project.category) + '" data-index="' + i + '"' +
@@ -243,10 +244,12 @@
     var github = (data.profile.socials.filter(function (s) { return s.icon === 'github'; })[0] || {}).href || 'https://github.com/';
     grid.insertAdjacentHTML('beforeend',
       '<a class="project-cta reveal" href="' + esc(github) + '" target="_blank" rel="noopener noreferrer" style="--d:120ms">' +
+        '<span class="project-cta__body">' +
+          '<span class="project-cta__label">More on GitHub</span>' +
+          '<span class="project-cta__title">更多练习与源码，都在 GitHub</span>' +
+          '<span class="project-cta__meta">持续更新中的小工具、练习与学习记录，欢迎来看看。</span>' +
+        '</span>' +
         '<span class="project-cta__arrow" aria-hidden="true">' + ARROW + '</span>' +
-        '<span class="project-cta__label">More on GitHub</span>' +
-        '<span class="project-cta__title">更多实验、源码<br>与工程笔记</span>' +
-        '<span class="project-cta__meta">持续更新中的小工具和视觉实验，欢迎来逛逛。</span>' +
       '</a>'
     );
   }
