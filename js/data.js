@@ -22,7 +22,7 @@ window.SITE_DATA = {
     heroTitle: "从第一行代码开始",
     heroTitleAccent: "把想法写成现实",
     heroDesc:
-      "我是凡尘逸事，住在抚州。正在学 Python，也在用 HTML、CSS 和 JavaScript 做点小东西。这里记录我的项目、练习和还在生长的想法。",
+      "我是凡尘逸事，住在抚州。正在学 Python，也在用 HTML、CSS 和 JavaScript 做点小东西。\n这里记录我的项目、练习和还在生长的想法。",
     focus: "Python / Web / 开源",
     texts: {
       availableBadge: "开放交流"
