@@ -348,7 +348,11 @@
       <ul class="modal__points" id="modal-points"></ul>
       <div class="modal__tags" id="modal-tags"></div>
       <div class="modal__actions">
-        <a class="btn btn--primary" href="#contact" data-close>聊聊类似的项目</a>
+        <a class="btn btn--primary" id="modal-link" href="#" target="_blank" rel="noopener noreferrer" data-close hidden>
+          查看仓库
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.5 12.5 12.5 3.5M5.5 3.5h7v7"/></svg>
+        </a>
+        <a class="btn btn--ghost" id="modal-contact" href="#contact" data-close>聊聊类似的项目</a>
         <span class="modal__hint">或直接写信：<span data-bind="email">hi@linchuan.dev</span></span>
       </div>
     </div>

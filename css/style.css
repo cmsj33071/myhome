@@ -543,6 +543,10 @@ img, svg {
   flex-shrink: 0;
 }
 
+.btn[hidden] {
+  display: none;
+}
+
 .btn:hover {
   transform: translateY(-2px);
 }
@@ -1678,13 +1682,25 @@ img, svg {
   grid-column: span 3;
 }
 
-/* 筛选后仅剩少量卡片时放大，避免出现空列 */
-.projects.is-filtered .project {
+/* 筛选后按结果数量重排，避免出现空列 */
+.projects.is-filtered[data-count="1"] .project {
+  grid-column: 2 / span 4;
+}
+
+.projects.is-filtered[data-count="1"] .project .project__cover {
+  aspect-ratio: 16 / 7;
+}
+
+.projects.is-filtered[data-count="2"] .project {
   grid-column: span 3;
 }
 
-.projects.is-filtered .project .project__cover {
+.projects.is-filtered[data-count="2"] .project .project__cover {
   aspect-ratio: 16 / 9;
+}
+
+.projects.is-filtered[data-count="3"] .project {
+  grid-column: span 2;
 }
 
 .project.is-hidden {
@@ -1924,7 +1940,7 @@ img, svg {
 
 /* 作品网格收尾卡片 */
 .project-cta {
-  grid-column: span 4;
+  grid-column: span 2;
   align-self: stretch;
   position: relative;
   display: flex;
@@ -1932,7 +1948,7 @@ img, svg {
   justify-content: center;
   gap: 8px;
   min-height: 240px;
-  padding: 30px 34px;
+  padding: 26px;
   border: 1px dashed rgba(255, 255, 255, 0.16);
   border-radius: var(--radius);
   background:
@@ -2815,8 +2831,12 @@ img, svg {
     grid-column: span 1;
   }
 
-  .projects.is-filtered .project {
+  .projects.is-filtered[data-count] .project {
     grid-column: span 1;
+  }
+
+  .projects.is-filtered[data-count] .project .project__cover {
+    aspect-ratio: 16 / 10;
   }
 
   .project-cta {

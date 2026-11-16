@@ -28,7 +28,7 @@ window.SITE_DATA = {
       availableBadge: "可合作"
     },
     socials: [
-      { label: "GitHub", handle: "@linchuan", href: "https://github.com/", icon: "github" },
+      { label: "GitHub", handle: "@cmsj33071", href: "https://github.com/cmsj33071", icon: "github" },
       { label: "掘金", handle: "@林川", href: "https://juejin.cn/", icon: "juejin" },
       { label: "X / Twitter", handle: "@linchuan_dev", href: "https://x.com/", icon: "x" },
       { label: "Email", handle: "hi@linchuan.dev", href: "mailto:hi@linchuan.dev", icon: "mail" }
@@ -192,19 +192,38 @@ window.SITE_DATA = {
       ]
     },
     {
-      title: "Signal",
-      category: "实验",
-      year: "2022",
-      role: "独立开发",
+      title: "DSH Session Manager",
+      category: "开源",
+      year: "2026",
+      role: "作者 / 维护者",
       featured: false,
-      accent: ["#34d399", "#a3e635"],
-      desc: "为远程团队设计的异步站会工具：用结构化卡片代替会议，把进度、阻塞与决策沉淀成可检索的记录。",
-      tags: ["React", "Supabase", "Realtime"],
+      accent: ["#34d399", "#22d3ee"],
+      desc: "为 DSH 会话行菜单加上导出备份、归档与安全删除的开源插件。所有破坏性操作先预览再执行，删除只进回收站。",
+      tags: ["JavaScript", "Node.js", "DSH"],
       highlights: [
-        "每日站会模板，3 分钟完成填写",
-        "阻塞项自动升级提醒",
-        "周报自动汇总，支持导出 Markdown"
-      ]
+        "预览令牌绑定目录 id、字节数与 revision，会话树一变即拒绝执行",
+        "活动会话与跨进程写锁双重拦截，force 操作默认 10 秒超时",
+        "删除改为移入回收站并保留 30 天，绝不 unlink，也不触碰共享附件",
+        "五个测试套件、200+ 断言，零运行时依赖，客户端无构建步骤"
+      ],
+      link: "https://github.com/cmsj33071/dsh-plugin-session-manager"
+    },
+    {
+      title: "Myhome",
+      category: "实验",
+      year: "2026",
+      role: "设计与开发",
+      featured: false,
+      accent: ["#22d3ee", "#a78bfa"],
+      desc: "你正在看的这个站点：无框架、无后端、无外部依赖的纯静态作品集，所有内容由单一数据文件驱动。",
+      tags: ["HTML", "CSS", "JavaScript"],
+      highlights: [
+        "零依赖、约 130KB，双击 index.html 即可本地运行",
+        "Canvas 粒子背景、滚动揭示、项目筛选与详情弹窗均为原生实现",
+        "内容与视图分离，改 data.js 即可复用为任意个人站点",
+        "适配 390–1920px，支持键盘操作与减少动效偏好"
+      ],
+      link: "https://github.com/cmsj33071/myhome"
     }
   ],
 

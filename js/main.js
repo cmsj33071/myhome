@@ -202,6 +202,7 @@
     grid.innerHTML = data.projects.map(function (project, i) {
       var tags = project.tags.map(function (tag) { return '<li>' + esc(tag) + '</li>'; }).join('');
       var pos = GLYPH_POS[i % GLYPH_POS.length];
+      var badgeText = project.featured ? 'Featured' : (project.link ? 'Open Source' : '');
       return (
         '<article class="project reveal' + (project.featured ? ' project--lg' : '') + '"' +
           ' data-cat="' + esc(project.category) + '" data-index="' + i + '"' +
@@ -211,7 +212,7 @@
             '<span class="project__glyph" aria-hidden="true">' + esc(glyphOf(project.title)) + '</span>' +
             '<span class="project__index">' + String(i + 1).padStart(2, '0') + '</span>' +
             '<span class="project__year">' + esc(project.year) + '</span>' +
-            (project.featured ? '<span class="project__badge">Featured</span>' : '') +
+            (badgeText ? '<span class="project__badge">' + badgeText + '</span>' : '') +
           '</div>' +
           '<div class="project__body">' +
             '<div class="project__top">' +
@@ -694,10 +695,12 @@
         b.setAttribute('aria-pressed', active ? 'true' : 'false');
       });
 
+      var visible = 0;
       $$('.project', grid).forEach(function (card) {
         var show = value === '全部' || card.dataset.cat === value;
         card.classList.toggle('is-hidden', !show);
         if (!show) return;
+        visible += 1;
 
         if (!card.classList.contains('in')) card.classList.add('in');
         if (reduceMotion || !card.animate) return;
@@ -709,6 +712,8 @@
           { duration: 420, easing: 'cubic-bezier(.16,1,.3,1)' }
         );
       });
+
+      grid.dataset.count = String(visible);
 
       var cta = $('.project-cta', grid);
       if (cta) cta.hidden = value !== '全部';
@@ -733,7 +738,9 @@
       title: $('#modal-title'),
       desc: $('#modal-desc'),
       points: $('#modal-points'),
-      tags: $('#modal-tags')
+      tags: $('#modal-tags'),
+      link: $('#modal-link'),
+      contact: $('#modal-contact')
     };
 
     function fill(project, i) {
@@ -754,6 +761,18 @@
       els.tags.innerHTML = project.tags.map(function (tag) {
         return '<li>' + esc(tag) + '</li>';
       }).join('');
+
+      if (project.link) {
+        els.link.href = project.link;
+        els.link.hidden = false;
+        els.contact.classList.remove('btn--primary');
+        els.contact.classList.add('btn--ghost');
+      } else {
+        els.link.hidden = true;
+        els.link.removeAttribute('href');
+        els.contact.classList.remove('btn--ghost');
+        els.contact.classList.add('btn--primary');
+      }
     }
 
     function focusables() {
