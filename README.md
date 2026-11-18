@@ -4,7 +4,7 @@
 
 一个无框架、无后端、无外部依赖的纯静态个人主页。深色极光视觉、Canvas 粒子背景，内容全部由 `js/data.js` 驱动。
 
-**在线预览：<https://www.cmsj33071.win/>**
+**在线预览：<https://cmsj33071.win/>**
 
 ![首页预览](preview.jpg)
 
